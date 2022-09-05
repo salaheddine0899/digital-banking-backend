@@ -10,4 +10,6 @@ public interface CustomerService {
     void deleteCustomer(Long customerId);
     CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException;
     Collection<CustomerDTO> listCustomers();
+
+    Collection<CustomerDTO> searchCustomers(String keyword, int page, int size);
 }

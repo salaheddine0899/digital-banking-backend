@@ -6,14 +6,17 @@ import ma.ebank.it.ebankingbackend.bo.Customer;
 import ma.ebank.it.ebankingbackend.dao.AccountOperationRepository;
 import ma.ebank.it.ebankingbackend.dao.BankAccountRepository;
 import ma.ebank.it.ebankingbackend.dao.CustomerRepository;
+import ma.ebank.it.ebankingbackend.dto.CustomerDTO;
 import ma.ebank.it.ebankingbackend.exceptions.BalanceNotSufficientException;
 import ma.ebank.it.ebankingbackend.exceptions.BankAccountNotFoundException;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;
 import ma.ebank.it.ebankingbackend.services.BankAccountService;
+import ma.ebank.it.ebankingbackend.services.CustomerService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,7 +30,7 @@ public class EbankingBackendApplication {
 	}
 
 	@Bean
-	CommandLineRunner start(BankAccountService bankAccountService, CustomerRepository customerRepository,
+	CommandLineRunner start(BankAccountService bankAccountService, CustomerService customerService,
 							BankAccountRepository accountRepository, AccountOperationRepository operationRepository){
 		return args -> {
 		};

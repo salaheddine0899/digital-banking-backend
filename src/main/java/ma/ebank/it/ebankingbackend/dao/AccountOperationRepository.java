@@ -9,5 +9,5 @@ import java.util.Collection;
 
 public interface AccountOperationRepository extends JpaRepository<AccountOperation,Long> {
     Collection<AccountOperation> findAccountOperationByAccount_Id(String id);
-    Page<AccountOperation> findAccountOperationByAccount_Id(String id, Pageable pageable);
+    Page<AccountOperation> findAccountOperationByAccountIdOrderByOperationDateDesc(String id, Pageable pageable);
 }

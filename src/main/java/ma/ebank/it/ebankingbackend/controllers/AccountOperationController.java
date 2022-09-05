@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ma.ebank.it.ebankingbackend.dto.*;
 import ma.ebank.it.ebankingbackend.services.AccountOperationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -16,6 +13,7 @@ import java.util.Collection;
 @RequestMapping(path = "operations/")
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin("*")
 public class AccountOperationController {
     private AccountOperationService operationService;
     @GetMapping(path = "byAccount/{accountId}")

@@ -1,10 +1,8 @@
 package ma.ebank.it.ebankingbackend.controllers;
 
 import lombok.AllArgsConstructor;
-import ma.ebank.it.ebankingbackend.dto.AccountHistoryDTO;
-import ma.ebank.it.ebankingbackend.dto.BankAccountDTO;
-import ma.ebank.it.ebankingbackend.dto.CurrentBankAccountDTO;
-import ma.ebank.it.ebankingbackend.dto.SavingBankAccountDTO;
+import ma.ebank.it.ebankingbackend.dto.*;
+import ma.ebank.it.ebankingbackend.exceptions.BalanceNotSufficientException;
 import ma.ebank.it.ebankingbackend.exceptions.BankAccountNotFoundException;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;
 import ma.ebank.it.ebankingbackend.services.BankAccountService;
@@ -15,6 +13,7 @@ import java.util.Collection;
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "accounts")
+@CrossOrigin("*")
 public class BankAccountController {
     private BankAccountService bankAccountService;
 
@@ -65,5 +64,23 @@ public class BankAccountController {
                                                @RequestParam(name = "size",defaultValue = "5") int size) throws BankAccountNotFoundException {
         AccountHistoryDTO accountHistory = bankAccountService.getAccountHistory(accountId, page, size);
         return accountHistory;
+    }
+
+    @PostMapping(path = "/debit")
+    public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
+        bankAccountService.debit(debitDTO.getAccountId(),debitDTO.getAmount(),debitDTO.getDescription());
+        return debitDTO;
+    }
+
+    @PostMapping(path = "/credit")
+    public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws BankAccountNotFoundException {
+        bankAccountService.credit(creditDTO.getAccountId(),creditDTO.getAmount(),creditDTO.getDescription());
+        return creditDTO;
+    }
+
+    @PostMapping(path = "/transfer")
+    public TransferDTO transfer(@RequestBody TransferDTO transferDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
+        bankAccountService.transfer(transferDTO.getAccountIdSource(),transferDTO.getAccountIdDestination(),transferDTO.getAmount());
+        return transferDTO;
     }
 }

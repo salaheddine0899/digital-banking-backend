@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Collection;
-import java.util.Date;
+
 @Getter @Setter
 public class AccountHistoryDTO {
     private String id;
@@ -12,5 +12,5 @@ public class AccountHistoryDTO {
     private int currentPage;
     private int totalPages;
     private int PageSize;
-    private Collection<AccountOperationDTO> operationDTOS;
+    private Collection<AccountOperationDTO> operations;
 }

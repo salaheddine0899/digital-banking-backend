@@ -136,11 +136,12 @@ public class BankAccountServiceImpl implements BankAccountService{
     @Override
     public AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws BankAccountNotFoundException {
         BankAccountDTO bankAccount = getBankAccount(accountId);
-        Page<AccountOperation> accountOperations = operationRepository.findAccountOperationByAccount_Id(accountId, PageRequest.of(page, size));
+        Page<AccountOperation> accountOperations = operationRepository
+                .findAccountOperationByAccountIdOrderByOperationDateDesc(accountId, PageRequest.of(page, size));
         AccountHistoryDTO accountHistoryDTO=new AccountHistoryDTO();
         List<AccountOperationDTO> operationDTOS = accountOperations.getContent().stream().map(operation ->
                 bankAccountMapper.fromAccountOperation(operation)).collect(Collectors.toList());
-        accountHistoryDTO.setOperationDTOS(operationDTOS);
+        accountHistoryDTO.setOperations(operationDTOS);
         accountHistoryDTO.setBalance(bankAccount.getBalance());
         accountHistoryDTO.setId(accountId);
         accountHistoryDTO.setPageSize(size);

@@ -13,12 +13,20 @@ import java.util.Collection;
 @RequestMapping(path = "/customers")
 @AllArgsConstructor
 @Slf4j
+@CrossOrigin("*")
 public class CustomerController {
     private CustomerService customerService;
     @GetMapping(path = {"","/"})
     public Collection<CustomerDTO> listCustomers(){
         log.info("list of customers");
         return customerService.listCustomers();
+    }
+    @GetMapping(path = "/search")
+    public Collection<CustomerDTO> searchCustomers(@RequestParam(name = "keyword",defaultValue = "") String keyword,
+                                                   @RequestParam(name = "page",defaultValue = "0") int page,
+                                                   @RequestParam(name = "size",defaultValue = "5") int size){
+        log.info("Search customers");
+        return customerService.searchCustomers(keyword,page,size);
     }
     @GetMapping("/{id}")
     public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws CustomerNotFoundException {
