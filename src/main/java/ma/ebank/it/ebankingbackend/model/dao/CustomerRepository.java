@@ -1,6 +1,6 @@
-package ma.ebank.it.ebankingbackend.dao;
+package ma.ebank.it.ebankingbackend.model.dao;
 
-import ma.ebank.it.ebankingbackend.bo.Customer;
+import ma.ebank.it.ebankingbackend.model.bo.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

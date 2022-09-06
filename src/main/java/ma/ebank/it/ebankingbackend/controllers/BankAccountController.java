@@ -1,10 +1,10 @@
 package ma.ebank.it.ebankingbackend.controllers;
 
 import lombok.AllArgsConstructor;
-import ma.ebank.it.ebankingbackend.dto.*;
 import ma.ebank.it.ebankingbackend.exceptions.BalanceNotSufficientException;
 import ma.ebank.it.ebankingbackend.exceptions.BankAccountNotFoundException;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;
+import ma.ebank.it.ebankingbackend.model.dto.*;
 import ma.ebank.it.ebankingbackend.services.BankAccountService;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,14 +31,14 @@ public class BankAccountController {
 
     @PostMapping(path = "/savingAccount")
     public SavingBankAccountDTO createSavingAccount(@RequestBody SavingBankAccountDTO bankAccountDTO) throws CustomerNotFoundException {
-        SavingBankAccountDTO savedBankAccount = bankAccountService.createSavingBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomerDTO().getId(),
+        SavingBankAccountDTO savedBankAccount = bankAccountService.createSavingBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomer().getId(),
                 bankAccountDTO.getInterestRate(),null, null,null);
         return savedBankAccount;
     }
 
     @PostMapping(path = "/currentAccount")
     public CurrentBankAccountDTO createCurrentAccount(@RequestBody CurrentBankAccountDTO bankAccountDTO) throws CustomerNotFoundException {
-        CurrentBankAccountDTO savedBankAccount = bankAccountService.createCurrentBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomerDTO().getId(),
+        CurrentBankAccountDTO savedBankAccount = bankAccountService.createCurrentBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomer().getId(),
                 bankAccountDTO.getOverDraft(), null, null, null);
         return savedBankAccount;
     }
@@ -46,7 +46,7 @@ public class BankAccountController {
     @PutMapping(path = "/savingAccount/{accountId}")
     public SavingBankAccountDTO updateSavingAccount(@RequestBody SavingBankAccountDTO bankAccountDTO,
                                                     @PathVariable String accountId) throws CustomerNotFoundException {
-        SavingBankAccountDTO savedBankAccount = bankAccountService.createSavingBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomerDTO().getId(),
+        SavingBankAccountDTO savedBankAccount = bankAccountService.createSavingBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomer().getId(),
                 bankAccountDTO.getInterestRate(),accountId, bankAccountDTO.getCreatedAt(), bankAccountDTO.getStatus());
         return savedBankAccount;
     }
@@ -54,7 +54,7 @@ public class BankAccountController {
     @PutMapping(path = "/currentAccount/{accountId}")
     public CurrentBankAccountDTO updateCurrentAccount(@RequestBody CurrentBankAccountDTO bankAccountDTO,
                                                       @PathVariable String accountId) throws CustomerNotFoundException {
-        CurrentBankAccountDTO savedBankAccount = bankAccountService.createCurrentBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomerDTO().getId(),
+        CurrentBankAccountDTO savedBankAccount = bankAccountService.createCurrentBankAccount(bankAccountDTO.getBalance(), bankAccountDTO.getCustomer().getId(),
                 bankAccountDTO.getOverDraft(), accountId, bankAccountDTO.getCreatedAt(), bankAccountDTO.getStatus());
         return savedBankAccount;
     }

@@ -1,10 +1,11 @@
 package ma.ebank.it.ebankingbackend.services;
 
 import lombok.AllArgsConstructor;
-import ma.ebank.it.ebankingbackend.bo.AccountOperation;
-import ma.ebank.it.ebankingbackend.dao.AccountOperationRepository;
-import ma.ebank.it.ebankingbackend.dto.*;
-import ma.ebank.it.ebankingbackend.mappers.BankAccountMapper;
+import ma.ebank.it.ebankingbackend.model.bo.AccountOperation;
+import ma.ebank.it.ebankingbackend.model.dao.AccountOperationRepository;
+
+import ma.ebank.it.ebankingbackend.model.mappers.BankAccountMapper;
+import ma.ebank.it.ebankingbackend.model.dto.AccountOperationDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

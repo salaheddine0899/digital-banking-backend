@@ -2,11 +2,17 @@ package ma.ebank.it.ebankingbackend.services;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.ebank.it.ebankingbackend.bo.Customer;
-import ma.ebank.it.ebankingbackend.dao.CustomerRepository;
-import ma.ebank.it.ebankingbackend.dto.CustomerDTO;
+import ma.ebank.it.ebankingbackend.model.bo.BankAccount;
+import ma.ebank.it.ebankingbackend.model.bo.CurrentAccount;
+import ma.ebank.it.ebankingbackend.model.bo.Customer;
+import ma.ebank.it.ebankingbackend.model.bo.SavingAccount;
+import ma.ebank.it.ebankingbackend.model.dao.BankAccountRepository;
+import ma.ebank.it.ebankingbackend.model.dao.CustomerRepository;
+import ma.ebank.it.ebankingbackend.model.dto.BankAccountDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CustomerAccountsDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CustomerDTO;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;
-import ma.ebank.it.ebankingbackend.mappers.BankAccountMapper;
+import ma.ebank.it.ebankingbackend.model.mappers.BankAccountMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -24,6 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private BankAccountMapper bankAccountMapper;
     private CustomerRepository customerRepository;
+    private BankAccountRepository bankAccountRepository;
     @Override
     public CustomerDTO saveCustomer(CustomerDTO customer) {
         log.info("Saving customer");
@@ -57,5 +64,25 @@ public class CustomerServiceImpl implements CustomerService {
         Collection<Customer> customers=customersPage.getContent();
         List<CustomerDTO> customerDTOS = customers.stream().map(customer -> bankAccountMapper.fromCustomer(customer)).collect(Collectors.toList());
         return  customerDTOS;
+    }
+
+    @Override
+    public CustomerAccountsDTO customerAccounts(Long customerId, int page, int size) throws CustomerNotFoundException {
+        CustomerDTO customerDTO=this.getCustomer(customerId);
+        CustomerAccountsDTO customerAccountsDTO=new CustomerAccountsDTO();
+        Page<BankAccount> accountPageable=bankAccountRepository
+                .findByCustomerIdOrderByCreatedAtDesc(customerId,PageRequest.of(page,size));
+        customerAccountsDTO.setCustomer(customerDTO);
+        Collection<BankAccount> accounts=accountPageable.getContent();
+        Collection<BankAccountDTO> bankAccountDTOS = accounts.stream().map(account -> {
+            if (account instanceof CurrentAccount)
+                return bankAccountMapper.fromCurrentAccount((CurrentAccount) account);
+            else return bankAccountMapper.fromSavingAccount((SavingAccount) account);
+        }).collect(Collectors.toList());
+        customerAccountsDTO.setAccounts(bankAccountDTOS);
+        customerAccountsDTO.setCurrentPage(page);
+        customerAccountsDTO.setSize(size);
+        customerAccountsDTO.setTotalPages(accountPageable.getTotalPages());
+        return customerAccountsDTO;
     }
 }

@@ -1,4 +1,4 @@
-package ma.ebank.it.ebankingbackend.bo;
+package ma.ebank.it.ebankingbackend.model.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @Data @NoArgsConstructor @AllArgsConstructor
 @Entity
-@DiscriminatorValue(value = "SA")
-public class SavingAccount extends BankAccount{
-    private double interestRate;
+@DiscriminatorValue(value = "CA")
+public class CurrentAccount extends BankAccount{
+    private double overDraft;
 }

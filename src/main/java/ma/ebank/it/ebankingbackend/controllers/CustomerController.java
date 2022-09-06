@@ -2,7 +2,8 @@ package ma.ebank.it.ebankingbackend.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.ebank.it.ebankingbackend.dto.CustomerDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CustomerAccountsDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CustomerDTO;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;
 import ma.ebank.it.ebankingbackend.services.CustomerService;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +47,13 @@ public class CustomerController {
     @DeleteMapping(path = "/{id}")
     public void deleteCustomer(@PathVariable(name = "id") Long customerId){
         customerService.deleteCustomer(customerId);
+    }
+
+    @GetMapping(path = "/{customerId}/accounts")
+    public CustomerAccountsDTO customerAccounts(@PathVariable Long customerId,
+                                                @RequestParam(name = "page",defaultValue = "0") int page,
+                                                @RequestParam(name = "size",defaultValue = "5") int size) throws CustomerNotFoundException {
+        CustomerAccountsDTO customerAccountsDTO = customerService.customerAccounts(customerId, page, size);
+        return customerAccountsDTO;
     }
 }

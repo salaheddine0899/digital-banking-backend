@@ -2,17 +2,18 @@ package ma.ebank.it.ebankingbackend.services;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.ebank.it.ebankingbackend.bo.*;
-import ma.ebank.it.ebankingbackend.dao.AccountOperationRepository;
-import ma.ebank.it.ebankingbackend.dao.BankAccountRepository;
-import ma.ebank.it.ebankingbackend.dao.CustomerRepository;
-import ma.ebank.it.ebankingbackend.dto.*;
-import ma.ebank.it.ebankingbackend.enums.AccountStatus;
-import ma.ebank.it.ebankingbackend.enums.OperationType;
+
+import ma.ebank.it.ebankingbackend.model.bo.*;
+import ma.ebank.it.ebankingbackend.model.dao.AccountOperationRepository;
+import ma.ebank.it.ebankingbackend.model.dao.BankAccountRepository;
+import ma.ebank.it.ebankingbackend.model.dao.CustomerRepository;
+import ma.ebank.it.ebankingbackend.model.enums.AccountStatus;
+import ma.ebank.it.ebankingbackend.model.enums.OperationType;
 import ma.ebank.it.ebankingbackend.exceptions.BalanceNotSufficientException;
 import ma.ebank.it.ebankingbackend.exceptions.BankAccountNotFoundException;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;
-import ma.ebank.it.ebankingbackend.mappers.BankAccountMapper;
+import ma.ebank.it.ebankingbackend.model.mappers.BankAccountMapper;
+import ma.ebank.it.ebankingbackend.model.dto.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

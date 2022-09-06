@@ -1,16 +1,18 @@
-package ma.ebank.it.ebankingbackend.dto;
+package ma.ebank.it.ebankingbackend.model.dto;
 
 import lombok.Data;
-import ma.ebank.it.ebankingbackend.enums.AccountStatus;
+import lombok.Getter;
+import lombok.Setter;
+import ma.ebank.it.ebankingbackend.model.enums.AccountStatus;
 
 import java.util.Date;
 
-@Data
+@Getter @Setter
 public class BankAccountDTO {
     private String id;
     private double balance;
     private Date createdAt;
     private AccountStatus status;
-    private CustomerDTO customerDTO;
+    private CustomerDTO customer;
     private String type;
 }

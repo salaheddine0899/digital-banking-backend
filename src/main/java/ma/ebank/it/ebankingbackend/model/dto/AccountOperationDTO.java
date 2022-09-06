@@ -1,7 +1,7 @@
-package ma.ebank.it.ebankingbackend.dto;
+package ma.ebank.it.ebankingbackend.model.dto;
 
 import lombok.Data;
-import ma.ebank.it.ebankingbackend.enums.OperationType;
+import ma.ebank.it.ebankingbackend.model.enums.OperationType;
 import java.util.Date;
 
 @Data

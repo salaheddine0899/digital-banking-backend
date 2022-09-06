@@ -1,9 +1,9 @@
-package ma.ebank.it.ebankingbackend.bo;
+package ma.ebank.it.ebankingbackend.model.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ma.ebank.it.ebankingbackend.enums.OperationType;
+import ma.ebank.it.ebankingbackend.model.enums.OperationType;
 
 import javax.persistence.*;
 import java.util.Date;

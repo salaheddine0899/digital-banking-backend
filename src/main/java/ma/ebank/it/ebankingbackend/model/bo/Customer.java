@@ -1,6 +1,5 @@
-package ma.ebank.it.ebankingbackend.bo;
+package ma.ebank.it.ebankingbackend.model.bo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

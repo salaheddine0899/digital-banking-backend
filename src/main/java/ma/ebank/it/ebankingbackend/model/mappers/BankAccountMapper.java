@@ -1,13 +1,13 @@
-package ma.ebank.it.ebankingbackend.mappers;
+package ma.ebank.it.ebankingbackend.model.mappers;
 
-import ma.ebank.it.ebankingbackend.bo.AccountOperation;
-import ma.ebank.it.ebankingbackend.bo.CurrentAccount;
-import ma.ebank.it.ebankingbackend.bo.Customer;
-import ma.ebank.it.ebankingbackend.bo.SavingAccount;
-import ma.ebank.it.ebankingbackend.dto.AccountOperationDTO;
-import ma.ebank.it.ebankingbackend.dto.CurrentBankAccountDTO;
-import ma.ebank.it.ebankingbackend.dto.CustomerDTO;
-import ma.ebank.it.ebankingbackend.dto.SavingBankAccountDTO;
+import ma.ebank.it.ebankingbackend.model.bo.AccountOperation;
+import ma.ebank.it.ebankingbackend.model.bo.CurrentAccount;
+import ma.ebank.it.ebankingbackend.model.bo.Customer;
+import ma.ebank.it.ebankingbackend.model.bo.SavingAccount;
+import ma.ebank.it.ebankingbackend.model.dto.AccountOperationDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CurrentBankAccountDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CustomerDTO;
+import ma.ebank.it.ebankingbackend.model.dto.SavingBankAccountDTO;
 
 public interface BankAccountMapper {
     CustomerDTO fromCustomer(Customer customer);

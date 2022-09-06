@@ -1,10 +1,10 @@
 package ma.ebank.it.ebankingbackend.services;
 
-import ma.ebank.it.ebankingbackend.dto.AccountHistoryDTO;
-import ma.ebank.it.ebankingbackend.dto.BankAccountDTO;
-import ma.ebank.it.ebankingbackend.dto.CurrentBankAccountDTO;
-import ma.ebank.it.ebankingbackend.dto.SavingBankAccountDTO;
-import ma.ebank.it.ebankingbackend.enums.AccountStatus;
+import ma.ebank.it.ebankingbackend.model.dto.AccountHistoryDTO;
+import ma.ebank.it.ebankingbackend.model.dto.BankAccountDTO;
+import ma.ebank.it.ebankingbackend.model.dto.CurrentBankAccountDTO;
+import ma.ebank.it.ebankingbackend.model.dto.SavingBankAccountDTO;
+import ma.ebank.it.ebankingbackend.model.enums.AccountStatus;
 import ma.ebank.it.ebankingbackend.exceptions.BalanceNotSufficientException;
 import ma.ebank.it.ebankingbackend.exceptions.BankAccountNotFoundException;
 import ma.ebank.it.ebankingbackend.exceptions.CustomerNotFoundException;

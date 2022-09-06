@@ -1,4 +1,4 @@
-package ma.ebank.it.ebankingbackend.dto;
+package ma.ebank.it.ebankingbackend.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;

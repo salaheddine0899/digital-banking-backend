@@ -2,7 +2,8 @@ package ma.ebank.it.ebankingbackend.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import ma.ebank.it.ebankingbackend.dto.*;
+
+import ma.ebank.it.ebankingbackend.model.dto.AccountOperationDTO;
 import ma.ebank.it.ebankingbackend.services.AccountOperationService;
 import org.springframework.web.bind.annotation.*;
 
